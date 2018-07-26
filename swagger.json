@@ -23,6 +23,24 @@
         }
        
       }
+    },
+    "/post": {
+      "get/{id}": {
+        "summary": "Get a single post",
+        "description": "Get a post by id"
+      },
+      "post": {
+        "summary": "Input post into database",
+        "description": "Input post data into database using POST method"
+      },
+      "put/{id}": {
+        "summary": "Update post data on database",
+        "description": "Update post data by Id and PUT method "
+      },
+      "delete": {
+        "summary": "Delete post data on database",
+        "description": "Delete post data by Id and DELETE method"
+      }
     }
   }
 }
