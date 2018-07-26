@@ -3,12 +3,25 @@ const Schema = mongoose.Schema;
 
 // Create post schema & model 
 const PostSchema = new Schema({
-	name: {
+	title: {
 	  type: String,
 	  required: [true, 'Name field is required']
 	},
-	body: {
-	  type: String
+	author: {
+	  type: String,
+	  default: "unknown",
+	},
+	content: {
+	  type: String,
+	  required: [true, 'Content field is required']
+	},
+	created_at: {
+	  type: Date,
+	  default: Date.now
+	},
+	categories: {
+	  type: String,
+	  default: "post"
 	}
 });
 

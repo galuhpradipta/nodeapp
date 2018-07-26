@@ -1,0 +1,27 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Simple API",
+    "description": "Simple API Documentaion"
+  },
+  "schemes": [
+    "http"
+  ],
+  "host": "bulusmind.com",
+  "basePath": "api",
+  "paths": {
+    "/posts": {
+        "get": {
+	  "summary": "Gets all posts",
+          "description": "Returns a list containing all posts",
+	  "responses": {
+	     
+	   }
+         }
+      }
+
+
+    }
+
+}
