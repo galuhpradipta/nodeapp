@@ -9,7 +9,7 @@
     "http"
   ],
   "host": "bulusmind.com",
-  "basePath": "api",
+  "basePath": "/api",
   "paths": {
     "/posts": {
       "get": {
