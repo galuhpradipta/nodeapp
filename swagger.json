@@ -12,16 +12,38 @@
   "basePath": "api",
   "paths": {
     "/posts": {
-        "get": {
-	  "summary": "Gets all posts",
-          "description": "Returns a list containing all posts",
-	  "responses": {
-	     
-	   }
-         }
+      "get": {
+        "summary": "Get all post",
+        "description": "Get a list of all post",
+        "responses": {
+          "200" : { 
+            "description": "list of post",
+            "schema": {
+              "type": "array",
+              "items": {
+                "properties": {
+                  "title": {
+                    "type": "string",
+                  },
+                  "author": {
+                    "type": "string"
+                  },
+                  "content": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "date"
+                  },
+                  "categories": {
+                    "type": "string"
+                  }
+                }
+              }          
+            }   
+            
+          }
+        }
       }
-
-
     }
-
+  }
 }
