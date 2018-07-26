@@ -17,32 +17,11 @@
         "description": "Get a list of all post",
         "responses": {
           "200" : { 
-            "description": "list of post",
-            "schema": {
-              "type": "array",
-              "items": {
-                "properties": {
-                  "title": {
-                    "type": "string",
-                  },
-                  "author": {
-                    "type": "string"
-                  },
-                  "content": {
-                    "type": "string"
-                  },
-                  "created_at": {
-                    "type": "date"
-                  },
-                  "categories": {
-                    "type": "string"
-                  }
-                }
-              }          
-            }   
-            
+            "description": "list of post"
+             
           }
         }
+       
       }
     }
   }
