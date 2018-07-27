@@ -8,8 +8,7 @@ const PostSchema = new Schema({
 	  required: [true, 'Name field is required']
 	},
 	author: {
-	  type: String,
-	  default: "unknown",
+	  type: Array,
 	},
 	content: {
 	  type: String,
