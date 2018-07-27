@@ -1,5 +1,5 @@
 const express = require('express');
-const Ninja = require('../models/post');
+const Post = require('../models/post');
 const jwt = require('jsonwebtoken');
 
 const router = express.Router();
@@ -23,15 +23,15 @@ router.post('/login/', function(req,res){
 
 // Get all posts
 router.get('/posts', function(req,res,next){
-	Ninja.find({}).then(function(ninjas){
-	  res.send(ninjas);
+	Post.find({}).then(function(post){
+		res.send(post);
 	});
 });
 
 // Get posts by ID
 router.get('/post/:id', function(req,res,next){
-	Ninja.findOne({_id: req.params.id}).then(function(ninja){
-	  res.send(ninja);
+	Post.findOne({_id: req.params.id}).then(function(post){
+		res.send(post);
 	});
 });
 
@@ -41,32 +41,50 @@ router.post('/post', verifyToken, function(req,res,next){
 		if(err){
 			res.sendStatus(403);
 		} else {
-			Ninja.create({
+			Post.create({
 				"title": req.body.title,
 				"content": req.body.content,
 				"author": authData
-			}).then(function(ninja){
-			res.send(ninja);
+			}).then(function(post){
+			res.send(post);
 			}).catch(next);
 		}
 	});
 });
 
 // Update a Post
-router.put('/post/:id', function(req,res,next){
-	Ninja.findByIdAndUpdate({_id: req.params.id}, req.body).then(function(ninja){
-	  Ninja.findOne({_id: req.params.id}).then(function(ninja){
-	    res.send(ninja);
-	  });
+router.put('/post/:id', verifyToken, function(req,res,next){
+	jwt.verify(req.token, 'rahasia', function(err, authData){
+		if(err){
+			res.sendStatus(403);
+		} else {
+			Post.findByIdAndUpdate({_id: req.params.id}, {
+				"title": req.body.title,
+				"content": req.body.content
+			}).then(function(post){
+				Post.findOne({_id: req.params.id}).then(function(post){
+					res.send(post);
+				});
+			});
+		}
 	});
+
 });
 
 // Delete a Post
-router.delete('/post/:id', function(req,res,next){
-	Ninja.findByIdAndRemove({_id: req.params.id}).then(function(ninja){
-	  res.send(ninja);
+router.delete('/post/:id', verifyToken, function(req,res,next){
+	jwt.verify(req.token, 'rahasia', function(err, authData){
+		if(err){
+			res.sendStatus(403);
+			console.log(err);
+		} else {
+			Post.findByIdAndRemove({_id: req.params.id}).then(function(post){
+				res.send(post);
+			});	
+		}
 	});
 });
+
 
 function verifyToken(req, res, next){
 	// Get auth header value
